@@ -4,57 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Ti, Mi Amor</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <style>
+        /* Estilos generales */
         body {
-            font-family: 'Poppins', sans-serif;
             margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #ff758c, #ff7eb3);
             color: white;
             overflow-x: hidden;
-            overflow-y: auto;
-            background: linear-gradient(45deg, #ff758c, #ff2e63);
+            text-align: center;
         }
 
-        #particles-js {
+        /* Fondo animado */
+        .background {
             position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
+            background: url('https://source.unsplash.com/1600x900/?love,romantic') no-repeat center center/cover;
             z-index: -1;
+            animation: fadeBackground 10s infinite alternate;
         }
 
+        @keyframes fadeBackground {
+            0% { filter: brightness(1); }
+            100% { filter: brightness(0.7); }
+        }
+
+        /* Contenedor principal */
         .container {
-            background: rgba(255, 255, 255, 0.2);
+            position: relative;
+            max-width: 600px;
+            margin: 50px auto;
             padding: 20px;
-            margin: 10px;
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            max-width: 90%;
-            backdrop-filter: blur(10px);
-            z-index: 1;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
         }
 
         h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 42px;
-            color: #ffd700;
+            font-size: 2em;
+            color: yellow;
+            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.5);
         }
 
-        .typing-text {
-            font-size: 18px;
-            line-height: 1.8;
-            display: inline-block;
-            overflow: hidden;
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: white;
+        }
+
+        .signature {
+            font-weight: bold;
+            color: yellow;
+            font-size: 1.3em;
+        }
+
+        /* Animación de texto */
+        .animated-text {
             white-space: nowrap;
-            border-right: 2px solid white;
-            animation: typing 6s steps(80, end) forwards, blink 0.7s infinite;
+            overflow: hidden;
+            border-right: 3px solid white;
+            width: 0;
+            animation: typing 5s steps(50, end) forwards, blink 1s infinite;
         }
 
         @keyframes typing {
@@ -66,105 +79,68 @@
             50% { border-color: transparent; }
         }
 
-        .signature {
-            font-weight: bold;
-            font-size: 20px;
-            color: #ffd700;
-        }
-
-        .memories-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 30px;
-            text-transform: uppercase;
-            color: #ffecb3;
-        }
-
-        .decorative-img {
-            width: 90%;
-            max-width: 400px;
-            margin-top: 15px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.5);
-        }
-
-        .audio-button {
+        /* Efecto de partículas */
+        .hearts {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #ffd700;
-            border: none;
-            color: white;
-            font-size: 20px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            z-index: 2;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -10px;
+            font-size: 24px;
+            animation: floatUp 5s infinite linear;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
         }
 
     </style>
 </head>
 <body>
 
-    <div id="particles-js"></div>
+    <div class="background"></div>
 
     <div class="container">
         <h1>Feliz Cumpleaños, Mi Amor</h1>
-        <p class="typing-text">Hoy es un día muy especial para ti. Quiero que lo pases muy bien con tus familiares. Quiero que sonrías todo el tiempo; tu sonrisa es la más hermosa del mundo.</p>
+        <p class="animated-text">Hoy es un día muy especial para ti. Quiero que lo pases muy bien con tus familiares. Quiero que sonrías todo el tiempo; tu sonrisa es la más hermosa del mundo.</p>
+        
         <p>Quiero que sepas que, desde que llegaste a mi vida, todo fue muy feliz. Gracias por existir. Quiero que estemos juntos para siempre; eres la persona que amo, con la que quiero tener hijos y formar una familia. Pero primero, casarnos. Eres mi esposa, aunque aún no tengamos los anillos y seamos muy jóvenes.</p>
+
         <p>Nunca olvides que te amo demasiado. Eres la niña más hermosa del mundo, la más bella, la más linda. Me encantas demasiado, me gustas mucho, me haces muy feliz. Quisiera poder estar junto a ti para besarte mucho, abrazarte mucho, poder pasar momentos juntos. Pero estamos a distancia. Mi amor por ti siempre será el mismo y aumenta. Nosotros estaremos juntos para siempre; es una promesa, y la cumpliremos con la ayuda de Dios.</p>
+
         <p>Feliz cumpleaños, mi vida.</p>
         <p class="signature">De parte de tu novio,<br>Daniel</p>
-
-        <h2 class="memories-title">Nuestros Recuerdos</h2>
-        <img src="./IMG-20240727-WA0449.jpg" alt="Imagen 1" class="decorative-img">
-        <img src="./IMG-20240727-WA0451.jpg" alt="Imagen 2" class="decorative-img">
-        <img src="./IMG-20240727-WA0455.jpg" alt="Imagen 3" class="decorative-img">
-        <img src="./IMG-20240727-WA0459(1).jpg" alt="Imagen 4" class="decorative-img">
-        <img src="./IMG-20240801-WA0398(1).jpg" alt="Imagen 5" class="decorative-img">
-        <img src="./IMG-20250107-WA0075.jpg" alt="Imagen 6" class="decorative-img">
-        <img src="./IMG_20240601_192156.jpg" alt="Imagen 7" class="decorative-img">
     </div>
 
-    <audio id="audio" autoplay loop muted>
-        <source src="./Amor_de_febrero.mp3" type="audio/mpeg">
-        Tu navegador no soporta la reproducción de audio.
-    </audio>
-
-    <button class="audio-button" id="toggleAudio">🔊</button>
+    <div class="hearts"></div>
 
     <script>
-        const audio = document.getElementById("audio");
-        const toggleAudio = document.getElementById("toggleAudio");
+        // Generar corazones flotantes
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.querySelector('.hearts').appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 500);
 
-        document.body.addEventListener("click", () => {
-            audio.muted = false;
+        // Efecto de música de fondo
+        const audio = new Audio('https://www.bensound.com/bensound-music/bensound-romantic.mp3');
+        audio.loop = true;
+        document.body.addEventListener('click', () => {
             audio.play();
         }, { once: true });
-
-        toggleAudio.addEventListener("click", () => {
-            if (audio.paused) {
-                audio.play();
-                toggleAudio.textContent = "🔊";
-            } else {
-                audio.pause();
-                toggleAudio.textContent = "🔇";
-            }
-        });
-
-        particlesJS("particles-js", {
-            "particles": {
-                "number": { "value": 60 },
-                "shape": { "type": "heart" },
-                "size": { "value": 8 },
-                "move": { "speed": 2 }
-            }
-        });
     </script>
 
 </body>
