@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mensaje Especial</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap');
 
-        /* Fondo y estructura */
+        /* Fondo con degradado */
         html, body {
             margin: 0;
             padding: 0;
             font-family: 'Poppins', sans-serif;
-            background: #ffe5ec;
+            background: linear-gradient(to bottom, #ffe5ec, #ffcad4);
             text-align: center;
             overflow-x: hidden;
         }
@@ -20,27 +20,27 @@
         /* Contenedor del mensaje */
         .container {
             background-color: rgba(255, 255, 255, 0.95);
-            padding: 25px;
-            margin: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            max-width: 90%;
+            padding: 30px;
+            margin: 30px auto;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            max-width: 85%;
             position: relative;
             z-index: 1;
             text-align: center;
         }
 
         h1 {
-            font-family: 'Dancing Script', cursive;
+            font-family: 'Playfair Display', serif;
             color: #d63384;
-            font-size: 36px;
+            font-size: 40px;
         }
 
         h2 {
-            font-family: 'Dancing Script', cursive;
+            font-family: 'Playfair Display', serif;
             color: #b91c6f;
-            font-size: 28px;
-            margin-top: 40px;
+            font-size: 30px;
+            margin-top: 50px;
         }
 
         p {
@@ -48,24 +48,30 @@
             font-size: 18px;
             line-height: 1.8;
             font-weight: 400;
+            margin-bottom: 15px;
         }
 
         .signature {
             font-weight: bold;
             color: #d63384;
-            font-size: 20px;
+            font-size: 22px;
         }
 
-        /* Imágenes con bordes redondeados */
+        /* Imágenes con animación y bordes redondeados */
         .decorative-img {
             width: 100%;
             max-width: 320px;
-            margin-top: 10px;
+            margin-top: 20px;
             border-radius: 15px;
             display: block;
             margin-left: auto;
             margin-right: auto;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .decorative-img:hover {
+            transform: scale(1.05);
         }
 
         /* Botón flotante para controlar el audio */
@@ -77,25 +83,25 @@
             border: none;
             color: white;
             font-size: 20px;
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
             z-index: 2;
         }
 
-        /* Estilos de los corazones flotantes */
+        /* Corazones flotantes mejorados */
         .heart {
             position: absolute;
             bottom: -50px;
-            font-size: 30px;
+            font-size: 40px;
             color: red;
-            animation: float 6s linear infinite;
-            opacity: 0.8;
+            animation: float 8s linear infinite;
+            opacity: 0.9;
         }
 
         @keyframes float {
@@ -104,7 +110,7 @@
                 opacity: 1;
             }
             100% {
-                transform: translateY(-100vh);
+                transform: translateY(-120vh);
                 opacity: 0;
             }
         }
@@ -136,9 +142,6 @@
     <!-- Audio oculto -->
     <audio id="audio" autoplay loop muted>
         <source src="./Amor_de_febrero.mp3" type="audio/mpeg">
-        <source src="./Amor_de_febrero.ogg" type="audio/ogg">
-        <source src="./Amor_de_febrero.wav" type="audio/wav">
-        Tu navegador no soporta la reproducción de audio.
     </audio>
 
     <!-- Botón flotante para controlar el audio -->
@@ -148,9 +151,9 @@
         const audio = document.getElementById("audio");
         const toggleAudio = document.getElementById("toggleAudio");
 
-        // Asegura que el audio se inicie correctamente en móviles tras la primera interacción.
+        // Activar sonido al hacer clic
         document.body.addEventListener("click", () => {
-            audio.muted = false; // Activa el sonido
+            audio.muted = false;
             audio.play();
         }, { once: true });
 
@@ -164,30 +167,21 @@
             }
         });
 
-        // Controlar la cantidad de corazones flotantes
-        let heartCount = 0;
-        const maxHearts = 20;
-
+        // Generar corazones flotantes
         function createHeart() {
-            if (heartCount >= maxHearts) return;
-
             const heart = document.createElement("div");
             heart.classList.add("heart");
             heart.innerHTML = "❤️";
             document.body.appendChild(heart);
 
             heart.style.left = Math.random() * window.innerWidth + "px";
-            heart.style.animationDuration = Math.random() * 3 + 3 + "s";
-            heart.style.fontSize = Math.random() * 20 + 30 + "px"; // Tamaño aleatorio
+            heart.style.animationDuration = Math.random() * 4 + 4 + "s";
+            heart.style.fontSize = Math.random() * 20 + 40 + "px";
 
-            heartCount++;
-            setTimeout(() => {
-                heart.remove();
-                heartCount--;
-            }, 6000);
+            setTimeout(() => heart.remove(), 8000);
         }
 
-        setInterval(createHeart, 400);
+        setInterval(createHeart, 600);
     </script>
 
 </body>
