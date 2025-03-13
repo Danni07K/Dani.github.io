@@ -54,28 +54,44 @@
         }
 
         /* Carrusel */
+        .carousel-container {
+            position: relative;
+            max-width: 400px;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
         .carousel {
             display: flex;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            max-width: 90%;
-            padding: 10px;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
         }
 
         .carousel img {
             width: 100%;
-            max-width: 400px;
-            margin: 10px;
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(255, 255, 255, 0.5);
-            transition: transform 0.3s ease;
         }
 
-        .carousel img:hover {
-            transform: scale(1.1);
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 215, 0, 0.8);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 18px;
+            z-index: 3;
         }
 
-        /* Botón flotante de audio */
+        .prev { left: 10px; }
+        .next { right: 10px; }
+
+        /* Botón de audio */
         .audio-button {
             position: fixed;
             bottom: 20px;
@@ -93,6 +109,11 @@
             cursor: pointer;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             z-index: 3;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .audio-button:active {
+            transform: scale(0.9);
         }
 
         /* Partículas */
@@ -119,14 +140,18 @@
         <p class="signature">De parte de tu novio,<br>Daniel</p>
 
         <h2 class="memories-title">Nuestros Recuerdos</h2>
-        <div class="carousel">
-            <img src="IMG-20240727-WA0449.jpg" alt="Imagen 1">
-            <img src="IMG-20240727-WA0451.jpg" alt="Imagen 2">
-            <img src="IMG-20240727-WA0455.jpg" alt="Imagen 3">
-            <img src="IMG-20240727-WA0459(1).jpg" alt="Imagen 4">
-            <img src="IMG-20240801-WA0398(1).jpg" alt="Imagen 5">
-            <img src="IMG-20250107-WA0075.jpg" alt="Imagen 6">
-            <img src="IMG_20240601_192156.jpg" alt="Imagen 7">
+        <div class="carousel-container">
+            <button class="prev">❮</button>
+            <div class="carousel">
+                <img src="IMG-20240727-WA0449.jpg" alt="Imagen 1">
+                <img src="IMG-20240727-WA0451.jpg" alt="Imagen 2">
+                <img src="IMG-20240727-WA0455.jpg" alt="Imagen 3">
+                <img src="IMG-20240727-WA0459(1).jpg" alt="Imagen 4">
+                <img src="IMG-20240801-WA0398(1).jpg" alt="Imagen 5">
+                <img src="IMG-20250107-WA0075.jpg" alt="Imagen 6">
+                <img src="IMG_20240601_192156.jpg" alt="Imagen 7">
+            </div>
+            <button class="next">❯</button>
         </div>
     </div>
 
@@ -136,12 +161,15 @@
         Tu navegador no soporta la reproducción de audio.
     </audio>
 
-    <!-- Botón flotante de audio -->
+    <!-- Botón de audio -->
     <button class="audio-button" id="toggleAudio">🔊</button>
 
     <script>
         const audio = document.getElementById("audio");
         const toggleAudio = document.getElementById("toggleAudio");
+        const carousel = document.querySelector(".carousel");
+        const images = document.querySelectorAll(".carousel img");
+        let index = 0;
 
         document.body.addEventListener("click", () => {
             audio.muted = false;
@@ -158,14 +186,17 @@
             }
         });
 
-        // Partículas mágicas
-        particlesJS("particles-js", {
-            particles: {
-                number: { value: 100 },
-                size: { value: 3 },
-                move: { speed: 2 }
-            }
+        document.querySelector(".next").addEventListener("click", () => {
+            index = (index + 1) % images.length;
+            carousel.style.transform = `translateX(-${index * 100}%)`;
         });
+
+        document.querySelector(".prev").addEventListener("click", () => {
+            index = (index - 1 + images.length) % images.length;
+            carousel.style.transform = `translateX(-${index * 100}%)`;
+        });
+
+        particlesJS("particles-js", { particles: { number: { value: 100 }, size: { value: 3 }, move: { speed: 2 } } });
     </script>
 
 </body>
