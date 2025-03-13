@@ -3,49 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Feliz Cumpleaños, [Yakelin, mi amor]!</title>
+    <title>Mensaje Especial</title>
     <style>
+        /* Estilos para mejorar la adaptabilidad en dispositivos móviles */
         body {
+            font-family: Arial, sans-serif;
             margin: 0;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            padding: 0;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
-            color: #fff;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
             text-align: center;
         }
         .container {
-            background: rgba(0, 0, 0, 0.5);
+            background-color: #ffffff;
             padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 2s ease-in-out;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
         }
         h1 {
-            font-size: 2.5em;
-            margin: 0;
+            color: #333333;
         }
         p {
-            font-size: 1.2em;
-            margin: 10px 0;
+            color: #666666;
+            line-height: 1.6;
         }
-        .signature {
+        audio {
             margin-top: 20px;
-            font-style: italic;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            width: 100%;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>¡Feliz Cumpleaños, [Yakelin]!</h1>
-        <p>En este día tan especial, quiero recordarte lo mucho que te amo y lo agradecido que estoy por cada momento que compartimos. Aunque la distancia nos separe hoy, mi corazón está contigo, celebrando tu vida y deseándote toda la felicidad del mundo.</p>
-        <p class="signature">Con todo mi amor,<br>[Daniel]</p>
+        <h1>Feliz Cumpleaños, Mi Amor</h1>
+         <p>Hoy es un día muy especial para ti. Quiero que lo pases muy bien con tus familiares. Quiero que sonrías todo el tiempo; tu sonrisa es la más hermosa del mundo.</p>
+        <p>Quiero que sepas que, desde que llegaste a mi vida, todo fue muy feliz. Gracias por existir. Quiero que estemos juntos para siempre; eres la persona que amo, con la que quiero tener hijos y formar una familia. Pero primero, casarnos. Eres mi esposa, aunque aún no tengamos los anillos y seamos muy jóvenes.</p>
+        <p>Nunca olvides que te amo demasiado. Eres la niña más hermosa del mundo, la más bella, la más linda. Me encantas demasiado, me gustas mucho, me haces muy feliz. Quisiera poder estar junto a ti para besarte mucho, abrazarte mucho, poder pasar momentos juntos. Pero estamos a distancia. Mi amor por ti siempre será el mismo y aumenta. Nosotros estaremos juntos para siempre; es una promesa, y la cumpliremos con la ayuda de Dios.</p>
+        <p>Feliz cumpleaños, mi vida.</p>
+        <p class="signature">De parte de tu novio,<br>Daniel</p>
+        <audio controls autoplay loop>
+            <source src="amor_de_febrero.mp3" type="audio/mpeg">
+            <source src="amor_de_febrero.ogg" type="audio/ogg">
+            <source src="amor_de_febrero.wav" type="audio/wav">
+            Tu navegador no soporta la reproducción de audio.
+        </audio>
     </div>
 </body>
 </html>
