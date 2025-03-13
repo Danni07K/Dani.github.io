@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mensaje Especial</title>
     <style>
-        /* Fondo con corazones */
+        /* Fondo con color rosado */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -15,10 +15,12 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background: #ffc0cb url('corazones.png') repeat;
+            background: #ffc0cb;
             text-align: center;
+            overflow: hidden; /* Para que los corazones no creen scroll */
         }
 
+        /* Contenedor del mensaje */
         .container {
             background-color: rgba(255, 255, 255, 0.9);
             padding: 20px;
@@ -26,6 +28,8 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             max-width: 90%;
+            position: relative;
+            z-index: 1;
         }
 
         h1 {
@@ -67,6 +71,27 @@
             justify-content: center;
             cursor: pointer;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+        }
+
+        /* Estilos de los corazones flotantes */
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            font-size: 24px;
+            color: red;
+            animation: float 5s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -108,6 +133,28 @@
                 toggleAudio.textContent = "🔇";
             }
         });
+
+        // Función para crear corazones flotantes
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            document.body.appendChild(heart);
+
+            // Posición aleatoria en el ancho de la pantalla
+            heart.style.left = Math.random() * window.innerWidth + "px";
+
+            // Duración aleatoria de la animación
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+
+            // Eliminar el corazón después de que termine la animación
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Generar corazones cada 500ms
+        setInterval(createHeart, 500);
     </script>
 
 </body>
