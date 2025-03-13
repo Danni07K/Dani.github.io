@@ -4,104 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mensaje Especial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap');
-
-        /* Fondo con degradado */
-        html, body {
+        /* Estilos generales */
+        body {
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to bottom, #ffe5ec, #ffcad4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #ff9aa2, #ff758c, #ff2e63);
             text-align: center;
-            overflow-x: hidden;
+            overflow-y: auto;
+            position: relative;
+            color: white;
         }
 
         /* Contenedor del mensaje */
         .container {
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: 30px;
-            margin: 30px auto;
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            max-width: 85%;
-            position: relative;
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            margin: 10px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            backdrop-filter: blur(10px);
             z-index: 1;
-            text-align: center;
         }
 
         h1 {
-            font-family: 'Playfair Display', serif;
-            color: #d63384;
-            font-size: 40px;
-        }
-
-        h2 {
-            font-family: 'Playfair Display', serif;
-            color: #b91c6f;
-            font-size: 30px;
-            margin-top: 50px;
+            font-family: 'Great Vibes', cursive;
+            font-size: 36px;
+            color: #fff;
         }
 
         p {
-            color: #444;
+            color: #fff;
             font-size: 18px;
             line-height: 1.8;
-            font-weight: 400;
-            margin-bottom: 15px;
         }
 
         .signature {
             font-weight: bold;
-            color: #d63384;
-            font-size: 22px;
+            font-size: 20px;
+            color: #ffd700;
         }
 
-        /* Imágenes con animación y bordes redondeados */
+        /* Sección de imágenes */
+        .memories-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 30px;
+            text-transform: uppercase;
+            color: #ffecb3;
+        }
+
         .decorative-img {
-            width: 100%;
-            max-width: 320px;
-            margin-top: 20px;
-            border-radius: 15px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease-in-out;
+            width: 90%;
+            max-width: 400px;
+            margin-top: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.5);
         }
 
-        .decorative-img:hover {
-            transform: scale(1.05);
-        }
-
-        /* Botón flotante para controlar el audio */
+        /* Botón flotante de audio */
         .audio-button {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #d63384;
+            background-color: #ffd700;
             border: none;
             color: white;
             font-size: 20px;
-            width: 55px;
-            height: 55px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             z-index: 2;
         }
 
-        /* Corazones flotantes mejorados */
+        /* Corazones flotantes */
         .heart {
             position: absolute;
             bottom: -50px;
             font-size: 40px;
             color: red;
-            animation: float 8s linear infinite;
-            opacity: 0.9;
+            animation: float 5s linear infinite;
         }
 
         @keyframes float {
@@ -110,7 +105,7 @@
                 opacity: 1;
             }
             100% {
-                transform: translateY(-120vh);
+                transform: translateY(-100vh);
                 opacity: 0;
             }
         }
@@ -126,10 +121,8 @@
         <p>Feliz cumpleaños, mi vida.</p>
         <p class="signature">De parte de tu novio,<br>Daniel</p>
 
-        <!-- Subtítulo antes de las imágenes -->
-        <h2>Nuestros recuerdos</h2>
-
-        <!-- Imágenes agregadas -->
+        <!-- Sección de imágenes -->
+        <h2 class="memories-title">Nuestros Recuerdos</h2>
         <img src="./IMG-20240727-WA0449.jpg" alt="Imagen 1" class="decorative-img">
         <img src="./IMG-20240727-WA0451.jpg" alt="Imagen 2" class="decorative-img">
         <img src="./IMG-20240727-WA0455.jpg" alt="Imagen 3" class="decorative-img">
@@ -139,19 +132,20 @@
         <img src="./IMG_20240601_192156.jpg" alt="Imagen 7" class="decorative-img">
     </div>
 
-    <!-- Audio oculto -->
+    <!-- Audio -->
     <audio id="audio" autoplay loop muted>
         <source src="./Amor_de_febrero.mp3" type="audio/mpeg">
+        Tu navegador no soporta la reproducción de audio.
     </audio>
 
-    <!-- Botón flotante para controlar el audio -->
+    <!-- Botón flotante de audio -->
     <button class="audio-button" id="toggleAudio">🔊</button>
 
     <script>
         const audio = document.getElementById("audio");
         const toggleAudio = document.getElementById("toggleAudio");
 
-        // Activar sonido al hacer clic
+        // Permitir reproducir audio en móviles después de la primera interacción
         document.body.addEventListener("click", () => {
             audio.muted = false;
             audio.play();
@@ -168,20 +162,28 @@
         });
 
         // Generar corazones flotantes
+        let heartCount = 0;
+        const maxHearts = 20;
+
         function createHeart() {
+            if (heartCount >= maxHearts) return;
+
             const heart = document.createElement("div");
             heart.classList.add("heart");
             heart.innerHTML = "❤️";
             document.body.appendChild(heart);
 
             heart.style.left = Math.random() * window.innerWidth + "px";
-            heart.style.animationDuration = Math.random() * 4 + 4 + "s";
-            heart.style.fontSize = Math.random() * 20 + 40 + "px";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
 
-            setTimeout(() => heart.remove(), 8000);
+            heartCount++;
+            setTimeout(() => {
+                heart.remove();
+                heartCount--;
+            }, 5000);
         }
 
-        setInterval(createHeart, 600);
+        setInterval(createHeart, 500);
     </script>
 
 </body>
