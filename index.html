@@ -5,49 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mensaje Especial</title>
     <style>
-        /* Fondo con color rosado */
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&display=swap');
+
+        /* Fondo y estructura */
         html, body {
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: #ffc0cb;
+            font-family: 'Poppins', sans-serif;
+            background: #ffe5ec;
             text-align: center;
-            overflow-x: hidden; /* Evita scroll horizontal */
+            overflow-x: hidden;
         }
 
         /* Contenedor del mensaje */
         .container {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            margin: 20px auto;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             max-width: 90%;
             position: relative;
             z-index: 1;
+            text-align: center;
         }
 
         h1 {
+            font-family: 'Dancing Script', cursive;
             color: #d63384;
+            font-size: 36px;
+        }
+
+        h2 {
+            font-family: 'Dancing Script', cursive;
+            color: #b91c6f;
+            font-size: 28px;
+            margin-top: 40px;
         }
 
         p {
-            color: #666666;
-            line-height: 1.6;
+            color: #444;
+            font-size: 18px;
+            line-height: 1.8;
+            font-weight: 400;
         }
 
         .signature {
             font-weight: bold;
             color: #d63384;
+            font-size: 20px;
         }
 
-        /* Imágenes decorativas */
+        /* Imágenes con bordes redondeados */
         .decorative-img {
             width: 100%;
-            max-width: 300px;
-            margin: 10px auto;
-            border-radius: 10px;
+            max-width: 320px;
+            margin-top: 10px;
+            border-radius: 15px;
             display: block;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         /* Botón flotante para controlar el audio */
@@ -67,27 +85,17 @@
             justify-content: center;
             cursor: pointer;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-        }
-
-        /* Contenedor para los corazones flotantes */
-        .heart-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none; /* No bloquea la interacción */
-            z-index: 0;
+            z-index: 2;
         }
 
         /* Estilos de los corazones flotantes */
         .heart {
             position: absolute;
             bottom: -50px;
-            font-size: 24px;
+            font-size: 30px;
             color: red;
-            animation: float 5s linear infinite;
+            animation: float 6s linear infinite;
+            opacity: 0.8;
         }
 
         @keyframes float {
@@ -104,8 +112,6 @@
 </head>
 <body>
 
-    <div class="heart-container"></div>
-
     <div class="container">
         <h1>Feliz Cumpleaños, Mi Amor</h1>
         <p>Hoy es un día muy especial para ti. Quiero que lo pases muy bien con tus familiares. Quiero que sonrías todo el tiempo; tu sonrisa es la más hermosa del mundo.</p>
@@ -113,6 +119,9 @@
         <p>Nunca olvides que te amo demasiado. Eres la niña más hermosa del mundo, la más bella, la más linda. Me encantas demasiado, me gustas mucho, me haces muy feliz. Quisiera poder estar junto a ti para besarte mucho, abrazarte mucho, poder pasar momentos juntos. Pero estamos a distancia. Mi amor por ti siempre será el mismo y aumenta. Nosotros estaremos juntos para siempre; es una promesa, y la cumpliremos con la ayuda de Dios.</p>
         <p>Feliz cumpleaños, mi vida.</p>
         <p class="signature">De parte de tu novio,<br>Daniel</p>
+
+        <!-- Subtítulo antes de las imágenes -->
+        <h2>Nuestros recuerdos</h2>
 
         <!-- Imágenes agregadas -->
         <img src="./IMG-20240727-WA0449.jpg" alt="Imagen 1" class="decorative-img">
@@ -158,7 +167,6 @@
         // Controlar la cantidad de corazones flotantes
         let heartCount = 0;
         const maxHearts = 20;
-        const heartContainer = document.querySelector(".heart-container");
 
         function createHeart() {
             if (heartCount >= maxHearts) return;
@@ -166,19 +174,20 @@
             const heart = document.createElement("div");
             heart.classList.add("heart");
             heart.innerHTML = "❤️";
-            heartContainer.appendChild(heart);
+            document.body.appendChild(heart);
 
             heart.style.left = Math.random() * window.innerWidth + "px";
-            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+            heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+            heart.style.fontSize = Math.random() * 20 + 30 + "px"; // Tamaño aleatorio
 
             heartCount++;
             setTimeout(() => {
                 heart.remove();
                 heartCount--;
-            }, 5000);
+            }, 6000);
         }
 
-        setInterval(createHeart, 500);
+        setInterval(createHeart, 400);
     </script>
 
 </body>
