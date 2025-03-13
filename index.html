@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mensaje Especial</title>
     <style>
-        /* Estilos para mejorar la adaptabilidad en dispositivos móviles */
+        /* Fondo con corazones */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -15,44 +15,100 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background-color: #f0f0f0;
+            background: #ffc0cb url('corazones.png') repeat;
             text-align: center;
         }
+
         .container {
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 20px;
             margin: 10px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             max-width: 90%;
         }
+
         h1 {
-            color: #333333;
+            color: #d63384;
         }
+
         p {
             color: #666666;
             line-height: 1.6;
         }
-        audio {
-            margin-top: 20px;
+
+        .signature {
+            font-weight: bold;
+            color: #d63384;
+        }
+
+        /* Imagen decorativa */
+        .decorative-img {
             width: 100%;
+            max-width: 300px;
+            margin-top: 10px;
+            border-radius: 10px;
+        }
+
+        /* Botón flotante para controlar el audio */
+        .audio-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #d63384;
+            border: none;
+            color: white;
+            font-size: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body>
+
     <div class="container">
         <h1>Feliz Cumpleaños, Mi Amor</h1>
-         <p>Hoy es un día muy especial para ti. Quiero que lo pases muy bien con tus familiares. Quiero que sonrías todo el tiempo; tu sonrisa es la más hermosa del mundo.</p>
+        <p>Hoy es un día muy especial para ti. Quiero que lo pases muy bien con tus familiares. Quiero que sonrías todo el tiempo; tu sonrisa es la más hermosa del mundo.</p>
         <p>Quiero que sepas que, desde que llegaste a mi vida, todo fue muy feliz. Gracias por existir. Quiero que estemos juntos para siempre; eres la persona que amo, con la que quiero tener hijos y formar una familia. Pero primero, casarnos. Eres mi esposa, aunque aún no tengamos los anillos y seamos muy jóvenes.</p>
         <p>Nunca olvides que te amo demasiado. Eres la niña más hermosa del mundo, la más bella, la más linda. Me encantas demasiado, me gustas mucho, me haces muy feliz. Quisiera poder estar junto a ti para besarte mucho, abrazarte mucho, poder pasar momentos juntos. Pero estamos a distancia. Mi amor por ti siempre será el mismo y aumenta. Nosotros estaremos juntos para siempre; es una promesa, y la cumpliremos con la ayuda de Dios.</p>
         <p>Feliz cumpleaños, mi vida.</p>
         <p class="signature">De parte de tu novio,<br>Daniel</p>
-        <audio controls autoplay loop>
-            <source src="amor_de_febrero.mp3" type="audio/mpeg">
-            <source src="amor_de_febrero.ogg" type="audio/ogg">
-            <source src="amor_de_febrero.wav" type="audio/wav">
-            Tu navegador no soporta la reproducción de audio.
-        </audio>
+
+        <!-- Imagen decorativa -->
+        <img src="imagen.jpg" alt="Imagen de amor" class="decorative-img">
     </div>
+
+    <!-- Audio oculto -->
+    <audio id="audio" autoplay loop>
+        <source src="amor_de_febrero.mp3" type="audio/mpeg">
+        <source src="amor_de_febrero.ogg" type="audio/ogg">
+        <source src="amor_de_febrero.wav" type="audio/wav">
+        Tu navegador no soporta la reproducción de audio.
+    </audio>
+
+    <!-- Botón flotante para controlar el audio -->
+    <button class="audio-button" id="toggleAudio">🔊</button>
+
+    <script>
+        const audio = document.getElementById("audio");
+        const toggleAudio = document.getElementById("toggleAudio");
+
+        toggleAudio.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play();
+                toggleAudio.textContent = "🔊";
+            } else {
+                audio.pause();
+                toggleAudio.textContent = "🔇";
+            }
+        });
+    </script>
+
 </body>
 </html>
