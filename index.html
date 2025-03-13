@@ -3,128 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz Cumpleaños, Mi Amor</title>
+    <title>Mensaje Especial</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        /* Fondo animado */
+        /* Fondo animado con scroll */
         body {
             margin: 0;
-            overflow: hidden;
             font-family: 'Poppins', sans-serif;
             background: black;
             color: white;
             text-align: center;
+            overflow-y: auto; /* Habilita el scroll */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 100px; /* Espacio para el botón de audio */
         }
 
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        /* Contenedor */
+        /* Contenedor principal */
         .container {
-            max-width: 90%;
-            margin: 50px auto;
+            background-color: rgba(255, 255, 255, 0.15);
             padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
+            margin: 20px;
             border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
             backdrop-filter: blur(10px);
         }
 
         h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: 50px;
-            color: #ffeb3b;
-            text-shadow: 0 0 20px #ffeb3b;
+            font-size: 36px;
+            color: #ffdd57;
         }
 
-        .testamento {
+        p {
             font-size: 18px;
             line-height: 1.8;
-            white-space: pre-wrap;
-            border-right: 2px solid white;
-            display: inline-block;
-            overflow: hidden;
-            animation: escribir 6s steps(100) forwards;
-        }
-
-        @keyframes escribir {
-            from { width: 0; }
-            to { width: 100%; }
         }
 
         .signature {
             font-weight: bold;
-            font-size: 22px;
-            color: #ffeb3b;
+            font-size: 20px;
+            color: #ffd700;
         }
 
-        /* Carrusel */
-        .carousel-container {
-            perspective: 1000px;
-            margin-top: 30px;
-        }
-
-        .carousel {
-            display: flex;
-            justify-content: center;
-            transform-style: preserve-3d;
-            animation: rotar 20s infinite linear;
-        }
-
-        .carousel img {
-            width: 250px;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.5);
-            position: absolute;
-            transition: transform 1s;
-        }
-
-        /* Posiciones de las imágenes */
-        .carousel img:nth-child(1) { transform: rotateY(0deg) translateZ(300px); }
-        .carousel img:nth-child(2) { transform: rotateY(60deg) translateZ(300px); }
-        .carousel img:nth-child(3) { transform: rotateY(120deg) translateZ(300px); }
-        .carousel img:nth-child(4) { transform: rotateY(180deg) translateZ(300px); }
-        .carousel img:nth-child(5) { transform: rotateY(240deg) translateZ(300px); }
-        .carousel img:nth-child(6) { transform: rotateY(300deg) translateZ(300px); }
-
-        @keyframes rotar {
-            from { transform: rotateY(0deg); }
-            to { transform: rotateY(360deg); }
-        }
-
-        /* Botón de transformación */
-        .power-button {
-            margin-top: 20px;
-            padding: 15px 30px;
-            font-size: 18px;
+        /* Imágenes */
+        .memories-title {
+            font-size: 24px;
             font-weight: bold;
-            color: white;
-            background: linear-gradient(45deg, #ffeb3b, #ff5722);
-            border: none;
-            cursor: pointer;
-            border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.5);
-            transition: transform 0.3s;
+            margin-top: 30px;
+            text-transform: uppercase;
+            color: #ffecb3;
         }
 
-        .power-button:hover {
-            transform: scale(1.1);
+        .decorative-img {
+            width: 90%;
+            max-width: 400px;
+            margin-top: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.5);
         }
 
-        /* Audio */
+        /* Botón de audio */
         .audio-button {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #ffeb3b;
+            background-color: #ffd700;
             border: none;
             color: black;
             font-size: 20px;
@@ -135,46 +82,104 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 6px rgba(255, 255, 255, 0.2);
-            z-index: 2;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
+        /* Animación de corazones */
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            font-size: 40px;
+            color: red;
+            animation: float 5s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <canvas id="stars"></canvas>
-
     <div class="container">
         <h1>Feliz Cumpleaños, Mi Amor</h1>
-        <p class="testamento">Hoy es un día muy especial para ti. Quiero que lo pases muy bien con tus familiares. Quiero que sonrías todo el tiempo; tu sonrisa es la más hermosa del mundo.
-
-Quiero que sepas que, desde que llegaste a mi vida, todo fue muy feliz. Gracias por existir. Quiero que estemos juntos para siempre; eres la persona que amo, con la que quiero tener hijos y formar una familia. Pero primero, casarnos. Eres mi esposa, aunque aún no tengamos los anillos y seamos muy jóvenes.
-
-Nunca olvides que te amo demasiado. Eres la niña más hermosa del mundo, la más bella, la más linda. Me encantas demasiado, me gustas mucho, me haces muy feliz. Quisiera poder estar junto a ti para besarte mucho, abrazarte mucho, poder pasar momentos juntos. Pero estamos a distancia. Mi amor por ti siempre será el mismo y aumenta. Nosotros estaremos juntos para siempre; es una promesa, y la cumpliremos con la ayuda de Dios.
-
-Feliz cumpleaños, mi vida.</p>
-
+        <p>Hoy es un día muy especial para ti. Quiero que lo pases muy bien con tus familiares. Quiero que sonrías todo el tiempo; tu sonrisa es la más hermosa del mundo.</p>
+        <p>Quiero que sepas que, desde que llegaste a mi vida, todo fue muy feliz. Gracias por existir. Quiero que estemos juntos para siempre; eres la persona que amo, con la que quiero tener hijos y formar una familia. Pero primero, casarnos. Eres mi esposa, aunque aún no tengamos los anillos y seamos muy jóvenes.</p>
+        <p>Nunca olvides que te amo demasiado. Eres la niña más hermosa del mundo, la más bella, la más linda. Me encantas demasiado, me gustas mucho, me haces muy feliz. Quisiera poder estar junto a ti para besarte mucho, abrazarte mucho, poder pasar momentos juntos. Pero estamos a distancia. Mi amor por ti siempre será el mismo y aumenta. Nosotros estaremos juntos para siempre; es una promesa, y la cumpliremos con la ayuda de Dios.</p>
+        <p>Feliz cumpleaños, mi vida.</p>
         <p class="signature">De parte de tu novio,<br>Daniel</p>
 
-        <div class="carousel-container">
-            <div class="carousel">
-                <img src="IMG-20240727-WA0449.jpg">
-                <img src="IMG-20240727-WA0451.jpg">
-                <img src="IMG-20240727-WA0455.jpg">
-                <img src="IMG-20240727-WA0459(1).jpg">
-                <img src="IMG-20240801-WA0398(1).jpg">
-                <img src="IMG-20250107-WA0075.jpg">
-                <img src="IMG_20240601_192156.jpg">
-            </div>
-        </div>
-
-        <button class="power-button">Activar Modo Supremo</button>
+        <!-- Sección de imágenes -->
+        <h2 class="memories-title">Nuestros Recuerdos</h2>
+        <img src="IMG-20240727-WA0449.jpg" alt="Imagen 1" class="decorative-img">
+        <img src="IMG-20240727-WA0451.jpg" alt="Imagen 2" class="decorative-img">
+        <img src="IMG-20240727-WA0455.jpg" alt="Imagen 3" class="decorative-img">
+        <img src="IMG-20240727-WA0459(1).jpg" alt="Imagen 4" class="decorative-img">
+        <img src="IMG-20240801-WA0398(1).jpg" alt="Imagen 5" class="decorative-img">
+        <img src="IMG-20250107-WA0075.jpg" alt="Imagen 6" class="decorative-img">
+        <img src="IMG_20240601_192156.jpg" alt="Imagen 7" class="decorative-img">
     </div>
 
-    <audio id="audio" autoplay loop>
+    <!-- Audio -->
+    <audio id="audio" autoplay loop muted>
         <source src="Amor_de_febrero.mp3" type="audio/mpeg">
+        Tu navegador no soporta la reproducción de audio.
     </audio>
+
+    <!-- Botón de audio -->
+    <button class="audio-button" id="toggleAudio">🔊</button>
+
+    <script>
+        const audio = document.getElementById("audio");
+        const toggleAudio = document.getElementById("toggleAudio");
+
+        // Permitir reproducir audio en móviles después de la primera interacción
+        document.body.addEventListener("click", () => {
+            audio.muted = false;
+            audio.play();
+        }, { once: true });
+
+        toggleAudio.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play();
+                toggleAudio.textContent = "🔊";
+            } else {
+                audio.pause();
+                toggleAudio.textContent = "🔇";
+            }
+        });
+
+        // Generar corazones flotantes
+        let heartCount = 0;
+        const maxHearts = 20;
+
+        function createHeart() {
+            if (heartCount >= maxHearts) return;
+
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            document.body.appendChild(heart);
+
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+
+            heartCount++;
+            setTimeout(() => {
+                heart.remove();
+                heartCount--;
+            }, 5000);
+        }
+
+        setInterval(createHeart, 500);
+    </script>
 
 </body>
 </html>
