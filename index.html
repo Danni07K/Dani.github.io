@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mensaje Especial</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <style>
-        /* Estilos generales */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -16,9 +17,9 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background: linear-gradient(to bottom, #ff9aa2, #ff758c, #ff2e63);
+            background: linear-gradient(to bottom, #ff758c, #ff2e63);
             text-align: center;
-            overflow-y: auto;
+            overflow-x: hidden;
             position: relative;
             color: white;
         }
@@ -32,42 +33,46 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             max-width: 90%;
             backdrop-filter: blur(10px);
-            z-index: 1;
+            z-index: 2;
         }
 
         h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: 36px;
-            color: #fff;
+            font-size: 40px;
+            color: #ffd700;
         }
 
         p {
-            color: #fff;
             font-size: 18px;
             line-height: 1.8;
         }
 
         .signature {
             font-weight: bold;
-            font-size: 20px;
-            color: #ffd700;
-        }
-
-        /* Sección de imágenes */
-        .memories-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 30px;
-            text-transform: uppercase;
+            font-size: 22px;
             color: #ffecb3;
         }
 
-        .decorative-img {
-            width: 90%;
+        /* Carrusel */
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            max-width: 90%;
+            padding: 10px;
+        }
+
+        .carousel img {
+            width: 100%;
             max-width: 400px;
-            margin-top: 15px;
+            margin: 10px;
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .carousel img:hover {
+            transform: scale(1.1);
         }
 
         /* Botón flotante de audio */
@@ -87,31 +92,23 @@
             justify-content: center;
             cursor: pointer;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            z-index: 2;
+            z-index: 3;
         }
 
-        /* Corazones flotantes */
-        .heart {
-            position: absolute;
-            bottom: -50px;
-            font-size: 40px;
-            color: red;
-            animation: float 5s linear infinite;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh);
-                opacity: 0;
-            }
+        /* Partículas */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            top: 0;
+            left: 0;
         }
     </style>
 </head>
 <body>
+
+    <div id="particles-js"></div>
 
     <div class="container">
         <h1>Feliz Cumpleaños, Mi Amor</h1>
@@ -121,20 +118,21 @@
         <p>Feliz cumpleaños, mi vida.</p>
         <p class="signature">De parte de tu novio,<br>Daniel</p>
 
-        <!-- Sección de imágenes -->
         <h2 class="memories-title">Nuestros Recuerdos</h2>
-        <img src="./IMG-20240727-WA0449.jpg" alt="Imagen 1" class="decorative-img">
-        <img src="./IMG-20240727-WA0451.jpg" alt="Imagen 2" class="decorative-img">
-        <img src="./IMG-20240727-WA0455.jpg" alt="Imagen 3" class="decorative-img">
-        <img src="./IMG-20240727-WA0459(1).jpg" alt="Imagen 4" class="decorative-img">
-        <img src="./IMG-20240801-WA0398(1).jpg" alt="Imagen 5" class="decorative-img">
-        <img src="./IMG-20250107-WA0075.jpg" alt="Imagen 6" class="decorative-img">
-        <img src="./IMG_20240601_192156.jpg" alt="Imagen 7" class="decorative-img">
+        <div class="carousel">
+            <img src="IMG-20240727-WA0449.jpg" alt="Imagen 1">
+            <img src="IMG-20240727-WA0451.jpg" alt="Imagen 2">
+            <img src="IMG-20240727-WA0455.jpg" alt="Imagen 3">
+            <img src="IMG-20240727-WA0459(1).jpg" alt="Imagen 4">
+            <img src="IMG-20240801-WA0398(1).jpg" alt="Imagen 5">
+            <img src="IMG-20250107-WA0075.jpg" alt="Imagen 6">
+            <img src="IMG_20240601_192156.jpg" alt="Imagen 7">
+        </div>
     </div>
 
     <!-- Audio -->
     <audio id="audio" autoplay loop muted>
-        <source src="./Amor_de_febrero.mp3" type="audio/mpeg">
+        <source src="Amor_de_febrero.mp3" type="audio/mpeg">
         Tu navegador no soporta la reproducción de audio.
     </audio>
 
@@ -145,7 +143,6 @@
         const audio = document.getElementById("audio");
         const toggleAudio = document.getElementById("toggleAudio");
 
-        // Permitir reproducir audio en móviles después de la primera interacción
         document.body.addEventListener("click", () => {
             audio.muted = false;
             audio.play();
@@ -161,29 +158,14 @@
             }
         });
 
-        // Generar corazones flotantes
-        let heartCount = 0;
-        const maxHearts = 20;
-
-        function createHeart() {
-            if (heartCount >= maxHearts) return;
-
-            const heart = document.createElement("div");
-            heart.classList.add("heart");
-            heart.innerHTML = "❤️";
-            document.body.appendChild(heart);
-
-            heart.style.left = Math.random() * window.innerWidth + "px";
-            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
-
-            heartCount++;
-            setTimeout(() => {
-                heart.remove();
-                heartCount--;
-            }, 5000);
-        }
-
-        setInterval(createHeart, 500);
+        // Partículas mágicas
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 100 },
+                size: { value: 3 },
+                move: { speed: 2 }
+            }
+        });
     </script>
 
 </body>
