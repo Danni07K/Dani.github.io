@@ -18,6 +18,7 @@
             background: #ffc0cb;
             text-align: center;
             overflow: hidden; /* Para que los corazones no creen scroll */
+            position: relative;
         }
 
         /* Contenedor del mensaje */
@@ -52,6 +53,9 @@
             max-width: 300px;
             margin-top: 10px;
             border-radius: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* Botón flotante para controlar el audio */
@@ -99,14 +103,16 @@
 
     <div class="container">
         <h1>Feliz Cumpleaños, Mi Amor</h1>
-        <p>Hoy es un día muy especial para ti. Quiero que lo pases muy bien con tus familiares. Quiero que sonrías todo el tiempo; tu sonrisa es la más hermosa del mundo.</p>
-        <p>Quiero que sepas que, desde que llegaste a mi vida, todo fue muy feliz. Gracias por existir. Quiero que estemos juntos para siempre; eres la persona que amo, con la que quiero tener hijos y formar una familia. Pero primero, casarnos. Eres mi esposa, aunque aún no tengamos los anillos y seamos muy jóvenes.</p>
-        <p>Nunca olvides que te amo demasiado. Eres la niña más hermosa del mundo, la más bella, la más linda. Me encantas demasiado, me gustas mucho, me haces muy feliz. Quisiera poder estar junto a ti para besarte mucho, abrazarte mucho, poder pasar momentos juntos. Pero estamos a distancia. Mi amor por ti siempre será el mismo y aumenta. Nosotros estaremos juntos para siempre; es una promesa, y la cumpliremos con la ayuda de Dios.</p>
-        <p>Feliz cumpleaños, mi vida.</p>
-        <p class="signature">De parte de tu novio,<br>Daniel</p>
+        <p>Hoy es un día muy especial para ti. Quiero que lo pases muy bien con tus familiares...</p>
 
-        <!-- Imagen decorativa -->
-        <img src="imagen.jpg" alt="Imagen de amor" class="decorative-img">
+        <!-- Imágenes agregadas -->
+        <img src="IMG-20240727-WA0449.jpg" alt="Imagen 1" class="decorative-img">
+        <img src="IMG-20240727-WA0451.jpg" alt="Imagen 2" class="decorative-img">
+        <img src="IMG-20240727-WA0455.jpg" alt="Imagen 3" class="decorative-img">
+        <img src="IMG-20240727-WA0459(1).jpg" alt="Imagen 4" class="decorative-img">
+        <img src="IMG-20240801-WA0398(1).jpg" alt="Imagen 5" class="decorative-img">
+        <img src="IMG-20250107-WA0075.jpg" alt="Imagen 6" class="decorative-img">
+        <img src="IMG_20240601_192156.jpg" alt="Imagen 7" class="decorative-img">
     </div>
 
     <!-- Audio oculto -->
@@ -123,6 +129,13 @@
     <script>
         const audio = document.getElementById("audio");
         const toggleAudio = document.getElementById("toggleAudio");
+
+        // Asegura que el audio se inicie correctamente en móviles tras la primera interacción.
+        document.body.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play();
+            }
+        }, { once: true });
 
         toggleAudio.addEventListener("click", () => {
             if (audio.paused) {
